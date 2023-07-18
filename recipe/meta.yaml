@@ -1,5 +1,5 @@
 {% set name = "wdmtoolbox" %}
-{% set version = "16.0.0" %}
+{% set version = "16.0.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/wdmtoolbox-{{ version }}.tar.gz
-  sha256: a766cbca02421f548cd6d0dd4dd8234114ce422c5ad7d2313e6d63f82c9c2f97
+  sha256: 3242ca24773d9966f730233e9cc796e6462d96b7e6dc3a79e59d6aab762e73c8
 
 build:
   skip: true  # [py<38]
