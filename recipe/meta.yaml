@@ -21,17 +21,18 @@ requirements:
     - {{ compiler('c') }}
   host:
     - python
-    - setuptools >=45
-    - setuptools-scm >=6.2
+    - meson-python
     - wheel
-    - numpy
+    - numpy ==1.22.4  # [py<=310]
     - pip
   run:
     - python
     - filelock
     - cltoolbox >=2.0.0,<3.0.0
-    - toolbox_utils >=3.0.0,<4.0.0
+    - toolbox_utils >=5.0.0,<6.0.0
     - {{ pin_compatible('numpy') }}
+    - pandas
+    - python-dateutil
 
 test:
   imports:
