@@ -19,7 +19,8 @@ requirements:
   build:
     - {{ compiler('fortran') }}  # [unix]
     - flang                      # [win]
-    - {{ compiler('c') }}
+    - {{ compiler('c') }}        # [unix]
+    - clang                      # [win]
   host:
     - python
     - meson-python
