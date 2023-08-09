@@ -34,7 +34,7 @@ requirements:
     - {{ pin_compatible('numpy') }}
     - pandas
     - python-dateutil
-    - libflag =5.0
+    - libflang =5.0
 
 test:
   imports:
