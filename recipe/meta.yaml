@@ -19,7 +19,7 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('fortran') }}  # [not win]
-    - flang =5.0                 # [win]
+    - flang                      # [win]
   host:
     - python
     - meson-python
@@ -34,7 +34,7 @@ requirements:
     - {{ pin_compatible('numpy') }}
     - pandas
     - python-dateutil
-    - libflang =5.0
+    - libflang                   # [win]
 
 test:
   imports:
