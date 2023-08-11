@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/wdmtoolbox-{{ version }}.tar.gz
-  sha256: 08e3da076ae78ad86950a752c3699a9a38ffa442d6bfb2a5567def295cb6349d
+  url: https://github.com/timcera/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 9fbf12f1dff94ab6f16062a7e7bba517603b8d36943855796951fb0107716504
 
 build:
   skip: true  # [py<38]
