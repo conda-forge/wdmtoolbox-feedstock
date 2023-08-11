@@ -5,30 +5,17 @@ package:
   name: {{ name|lower }}
   version: {{ version }}
 
-source:
-  url: https://github.com/timcera/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 9fbf12f1dff94ab6f16062a7e7bba517603b8d36943855796951fb0107716504
-
 build:
   skip: true  # [py<38]
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
-  script: {{ PYTHON }} -m build --no-isolation --skip-dependency-check
+  script: {{ PYTHON }} -m pip install --no-deps --only-binary :all: {{ name }}
   number: 0
 
 requirements:
-  build:
-    - {{ compiler('fortran') }}
-    - {{ compiler('c') }}
-    - meson
-    - meson-python
-    - numpy
   host:
     - python
-    - python-build
-    - meson-python
     - wheel
-    - numpy ==1.22.4  # [py<=310]
     - pip
   run:
     - python
