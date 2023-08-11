@@ -9,7 +9,7 @@ build:
   skip: true  # [py<38]
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
-  script: {{ PYTHON }} -m pip install --no-deps --only-binary :all: {{ name }}
+  script: {{ PYTHON }} -m pip install --no-deps --only-binary ':all:' {{ name }}
   number: 0
 
 requirements:
