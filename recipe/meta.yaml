@@ -27,6 +27,7 @@ requirements:
     - numpy
     - wheel
     - pip
+    - lld        # [win]
   run:
     - python
     - filelock
