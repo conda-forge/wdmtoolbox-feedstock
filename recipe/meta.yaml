@@ -18,11 +18,11 @@ build:
 
 requirements:
   build:
-    - {{ compiler('fortran') }}
-    - {{ compiler('c') }}
+    - {{ compiler('fortran') }}    # [not win]
+    - {{ compiler('c') }}          # [not win]
+    - m2w64-gcc-fortran           # [win]
+    - m2w64-gcc                   # [win]
   host:
-    - {{ compiler('fortran') }}    # [win]
-    - {{ compiler('c') }}          # [win]
     - python
     - python-build
     - meson-python
