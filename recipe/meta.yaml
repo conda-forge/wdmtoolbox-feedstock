@@ -21,13 +21,14 @@ requirements:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
   host:
+    - {{ compiler('fortran') }}    # [win]
+    - {{ compiler('c') }}          # [win]
     - python
     - python-build
     - meson-python
     - numpy
     - wheel
     - pip
-    - lld        # [win]
   run:
     - python
     - filelock
