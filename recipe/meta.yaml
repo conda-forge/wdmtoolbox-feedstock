@@ -18,25 +18,24 @@ build:
 
 requirements:
   build:
-    - {{ compiler('fortran') }}    # [not win]
-    - {{ compiler('c') }}          # [not win]
-    - m2w64-gcc-fortran           # [win]
-    - m2w64-gcc                   # [win]
+    - {{ compiler('fortran') }}
+    - {{ compiler('c') }}
   host:
+    - meson-python
+    - ninja         # [win]
+    - numpy
+    - pip
     - python
     - python-build
-    - meson-python
-    - numpy
     - wheel
-    - pip
   run:
-    - python
-    - filelock
     - cltoolbox >=2.0.0,<3.0.0
-    - {{ pin_compatible('numpy') }}
-    - toolbox_utils >=5.0.0,<6.0.0
+    - filelock
     - pandas
+    - {{ pin_compatible('numpy') }}
+    - python
     - python-dateutil
+    - toolbox_utils >=5.0.0,<6.0.0
 
 test:
   imports:
