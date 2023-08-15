@@ -11,10 +11,13 @@ source:
 
 build:
   skip: true  # [py<38]
+  number: 0
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
+  script_env:
+    - CC = clang    # [win]
+    - FC = flang    # [win]
   script: {{ PYTHON }} -m pip install --no-build-isolation --no-deps .
-  number: 0
 
 requirements:
   build:
