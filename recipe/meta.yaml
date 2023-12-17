@@ -19,6 +19,7 @@ requirements:
   build:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
+    - meson-python
   host:
     - python
     - setuptools >=45
@@ -31,6 +32,9 @@ requirements:
     - filelock
     - cltoolbox >=2.0.0,<3.0.0
     - toolbox_utils >=3.0.0,<4.0.0
+    - pandas
+    - python-dateutil
+    - tabulate
     - {{ pin_compatible('numpy') }}
 
 test:
