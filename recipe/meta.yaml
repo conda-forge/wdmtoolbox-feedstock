@@ -19,19 +19,23 @@ requirements:
   build:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
+    - meson-python
   host:
-    - python
-    - setuptools >=45
-    - setuptools-scm >=6.2
-    - wheel
+    - meson
+    - meson-python
     - numpy
     - pip
-  run:
     - python
-    - filelock
-    - cltoolbox >=2.0.0,<3.0.0
-    - toolbox_utils >=3.0.0,<4.0.0
+    - wheel
+  run:
     - {{ pin_compatible('numpy') }}
+    - cltoolbox >=2.0.0,<3.0.0
+    - filelock
+    - pandas
+    - python
+    - python-dateutil
+    - tabulate
+    - toolbox_utils >=5.0.0,<6.0.0    
 
 test:
   imports:
