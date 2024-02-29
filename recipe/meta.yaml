@@ -17,8 +17,10 @@ build:
 
 requirements:
   build:
-    - {{ compiler('fortran') }}
+    - {{ compiler('fortran') }}  # [not win]
     - {{ compiler('c') }}
+    - flang                      # [win]
+    - lld                        # [win]
     - meson-python
   host:
     - meson
@@ -33,6 +35,7 @@ requirements:
     - filelock
     - pandas
     - python
+    - python-build
     - python-dateutil
     - tabulate
     - toolbox_utils >=5.0.0,<6.0.0    
