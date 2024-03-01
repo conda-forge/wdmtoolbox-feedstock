@@ -12,7 +12,7 @@ source:
 build:
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation  # [not win]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps  # [not win]
   number: 0
 
 requirements:
