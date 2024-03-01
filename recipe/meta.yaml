@@ -29,14 +29,14 @@ requirements:
     - meson-python
     - numpy
     - pip
-    - python >=3.8
+    - python
     - wheel
   run:
     - {{ pin_compatible('numpy') }}
     - cltoolbox >=2.0.0,<3.0.0
     - filelock
     - pandas
-    - python >=3.8
+    - python
     - python-build
     - python-dateutil
     - tabulate

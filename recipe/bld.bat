@@ -32,7 +32,7 @@ set "LDFLAGS=%LDFLAGS% -Wl,-defaultlib:%BUILD_PREFIX%/Library/lib/clang/!CLANG_V
 set "MESON_RSP_THRESHOLD=320000"
 
 :: -wnx flags mean: --wheel --no-isolation --skip-dependency-check
-%PYTHON% -m build -w -n -x ^
+%PYTHON% -m build -w -n ^
     -Cbuilddir=builddir ^
     -Csetup-args=-Dfortran_std=none ^
     -Csetup-args=-Duse-g77-abi=true
