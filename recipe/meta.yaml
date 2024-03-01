@@ -23,6 +23,7 @@ requirements:
     - flang                      # [win]
     - lld                        # [win]
     - meson-python
+    - python-build
   host:
     - meson
     - meson-python
@@ -35,7 +36,7 @@ requirements:
     - cltoolbox >=2.0.0,<3.0.0
     - filelock
     - pandas
-    - pint !=0.21
+    - pint !=0.21        # [py>=3.9]
     - pint <0.22         # [py<3.9]
     - pint-pandas <=0.3  # [py<3.9]
     - pint-pandas        # [py>=3.9]
