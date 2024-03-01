@@ -12,16 +12,14 @@ source:
 build:
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
-  script: {{ PYTHON }} -m pip install . -vv
-  script_env:
-      # flang 17 uses "flang-new" instead of keeping "flang"
-      FC=flang-new  # [win]
+  script: {{ PYTHON }} -m pip install . -vv  # [not win]
   number: 0
 
 requirements:
   build:
     - {{ compiler('fortran') }}  # [not win]
     - {{ compiler('c') }}
+    - clang                      # [win]
     - flang                      # [win]
     - lld                        # [win]
     - meson-python
@@ -38,8 +36,9 @@ requirements:
     - filelock
     - pandas
     - pint !=0.21
-    - pint <0.22  # [py<3.9]
-    - pint-pandas
+    - pint <0.22         # [py<3.9]
+    - pint-pandas <=0.3  # [py<3.9]
+    - pint-pandas        # [py>=3.9]
     - python
     - python-build
     - python-dateutil
