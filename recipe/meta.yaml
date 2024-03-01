@@ -30,6 +30,7 @@ requirements:
     - numpy
     - pip
     - python
+    - python-build
     - wheel
   run:
     - {{ pin_compatible('numpy') }}
