@@ -1,5 +1,5 @@
 {% set name = "wdmtoolbox" %}
-{% set version = "14.0.1" %}
+{% set version = "16.0.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,31 +7,41 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/wdmtoolbox-{{ version }}.tar.gz
-  sha256: 60059f86c706483e338b9b4cca9fe5fa0ed895c2ddcd852e60abb51233ac1e13
+  sha256: e29642c2cabbc3b3d6dab387221123cbafea9d6cbe3655a2f1a3bae8de3aec2b
 
 build:
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps  # [not win]
   number: 0
 
 requirements:
   build:
-    - {{ compiler('fortran') }}
+    - {{ compiler('fortran') }}  # [not win]
     - {{ compiler('c') }}
+    - clang                      # [win]
+    - flang                      # [win]
+    - lld                        # [win]
+    - meson-python
+    - python-build
   host:
-    - python
-    - setuptools >=45
-    - setuptools-scm >=6.2
-    - wheel
+    - meson
+    - meson-python
     - numpy
     - pip
-  run:
     - python
-    - filelock
-    - cltoolbox >=2.0.0,<3.0.0
-    - toolbox_utils >=3.0.0,<4.0.0
+    - python-build
+    - wheel
+  run:
     - {{ pin_compatible('numpy') }}
+    - cltoolbox >=2.0.0,<3.0.0
+    - filelock
+    - pandas
+    - python
+    - python-build
+    - python-dateutil
+    - tabulate
+    - toolbox_utils >=5.0.0,<6.0.0    
 
 test:
   imports:
