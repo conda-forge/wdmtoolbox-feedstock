@@ -1,37 +1,44 @@
 {% set name = "wdmtoolbox" %}
-{% set version = "14.0.1" %}
+{% set version = "16.0.3" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/wdmtoolbox-{{ version }}.tar.gz
-  sha256: 60059f86c706483e338b9b4cca9fe5fa0ed895c2ddcd852e60abb51233ac1e13
+  git_url: https://github.com/timcera/{{ name }}.git
+  git_rev: v{{ version }}
 
 build:
+  skip: true  # [py<38]
+  number: 0
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
-  script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  script_env:
+    - CC = clang    # [win]
+    - FC = flang    # [win]
+  script: {{ PYTHON }} -m pip install --no-build-isolation --no-deps .
 
 requirements:
   build:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
   host:
-    - python
-    - setuptools >=45
-    - setuptools-scm >=6.2
-    - wheel
+    - meson-python
+    - ninja         # [win]
     - numpy
     - pip
-  run:
     - python
-    - filelock
+    - python-build
+    - wheel
+  run:
     - cltoolbox >=2.0.0,<3.0.0
-    - toolbox_utils >=3.0.0,<4.0.0
+    - filelock
+    - pandas
     - {{ pin_compatible('numpy') }}
+    - python
+    - python-dateutil
+    - toolbox_utils >=5.0.0,<6.0.0
 
 test:
   imports:
