@@ -13,12 +13,13 @@ build:
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   build:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
   host:
     - python
     - setuptools >=45
@@ -31,7 +32,6 @@ requirements:
     - filelock
     - cltoolbox >=2.0.0,<3.0.0
     - toolbox_utils >=3.0.0,<4.0.0
-    - {{ pin_compatible('numpy') }}
 
 test:
   imports:
