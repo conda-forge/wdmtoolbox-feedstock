@@ -25,14 +25,13 @@ requirements:
     - setuptools >=45
     - setuptools-scm >=6.2
     - wheel
-    - numpy
+    - numpy >=2.0.0
     - pip
   run:
     - python
     - filelock
     - cltoolbox >=2.0.0,<3.0.0
     - toolbox_utils >=3.0.0,<4.0.0
-    - {{ pin_compatible('numpy') }}
 
 test:
   imports:
