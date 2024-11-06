@@ -10,8 +10,6 @@ source:
   sha256: 808e0660643b73cafcee2245f3ef08408e50e954559084a9ddbdca24dedb4c84
 
 build:
-  script_env:
-    - FC_LD=lld  # [win]
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
   script: {{ PYTHON }} -m pip install . -vv
@@ -21,9 +19,11 @@ requirements:
   build:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
+    - lld  # [win]
     - meson-python
     - meson
   host:
+    - lld  # [win]
     - meson-python
     - meson
     - python
