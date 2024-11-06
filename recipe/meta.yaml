@@ -22,6 +22,8 @@ requirements:
     - meson-python
     - meson
   host:
+    - meson-python
+    - meson
     - python
     - setuptools >=45
     - setuptools-scm >=6.2
