@@ -1,37 +1,46 @@
 {% set name = "wdmtoolbox" %}
-{% set version = "14.0.1" %}
+{% set version = "16.0.9" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/wdmtoolbox-{{ version }}.tar.gz
-  sha256: 60059f86c706483e338b9b4cca9fe5fa0ed895c2ddcd852e60abb51233ac1e13
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/wdmtoolbox-{{ version }}.tar.gz
+  sha256: 0a7c699fc7fb9238876e18218023a61bf9cd141d614f54ab391f05c01755470d
 
 build:
+  skip: true  # [py<39]
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
   build:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
+    - {{ stdlib('c') }}
   host:
     - python
-    - setuptools >=45
-    - setuptools-scm >=6.2
-    - wheel
-    - numpy
+    - meson-python
+    - meson >=1.5.1
+    - setuptools-scm
+    - numpy >=2.0
     - pip
   run:
     - python
     - filelock
-    - cltoolbox >=2.0.0,<3.0.0
-    - toolbox_utils >=3.0.0,<4.0.0
-    - {{ pin_compatible('numpy') }}
+    - cltoolbox >=2.0.0
+    - dateparser
+    - numpy >=1.26
+    - pandas
+    - pint !=0.21.*
+    - pint-pandas
+    - pydantic
+    - python-dateutil
+    - scipy
+    - tabulate
 
 test:
   imports:
