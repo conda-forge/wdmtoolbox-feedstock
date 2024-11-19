@@ -18,35 +18,38 @@ build:
 
 requirements:
   build:
-    - {{ compiler('fortran') }}
-    - {{ compiler('c') }}
-    - {{ stdlib('c') }}
-    - autotools_clang_conda  # [win]
+    - {{ compiler('fortran') }}        # [not win]
+    - {{ compiler('c') }}              # [not win]
+    - {{ stdlib('c') }}                # [not win]
+    - {{ compiler("m2w64_fortran") }}  # [win]
+    - {{ compiler("m2w64_c") }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - meson-python
     - meson >=1.5.1
     - numpy >=2.0
     - python
     - setuptools-scm
   host:
-    - autotools_clang_conda  # [win]
     - meson-python
     - meson >=1.5.1
     - numpy >=2.0
     - pip
     - python
   run:
-    - python
-    - filelock
     - cltoolbox >=2.0.0
     - dateparser
+    - filelock
+    - m2w64-gcc-libgfortran  # [win]
     - numpy >=1.26
     - pandas
     - pint !=0.21.*
     - pint-pandas
     - pydantic
+    - python
     - python-dateutil
     - scipy
     - tabulate
+
 
 test:
   imports:
