@@ -21,12 +21,14 @@ requirements:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
+    - binutils  # [win]
     - meson-python
     - meson >=1.5.1
     - numpy >=2.0
     - python
     - setuptools-scm
   host:
+    - binutils  # [win]
     - meson-python
     - meson >=1.5.1
     - numpy >=2.0
