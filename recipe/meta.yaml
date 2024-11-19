@@ -21,15 +21,17 @@ requirements:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
-    - python
     - meson-python
     - meson >=1.5.1
+    - numpy >=2.0
+    - python
     - setuptools-scm
+  host:
+    - meson-python
+    - meson >=1.5.1
     - numpy >=2.0
     - pip
-  host:
     - python
-    - pip
   run:
     - python
     - filelock
