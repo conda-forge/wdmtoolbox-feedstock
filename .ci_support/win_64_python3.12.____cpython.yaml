@@ -1,13 +1,15 @@
+c_compiler:
+- vs2019
+c_stdlib:
+- vs
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
-m2w64_c_compiler:
-- m2w64-toolchain
-m2w64_c_stdlib:
-- m2w64-toolchain
-m2w64_fortran_compiler:
-- m2w64-toolchain
+fortran_compiler:
+- flang
+fortran_compiler_version:
+- '19'
 pin_run_as_build:
   python:
     min_pin: x.x
