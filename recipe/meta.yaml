@@ -14,16 +14,13 @@ build:
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   build:
-    - {{ compiler('fortran') }}        # [not win]
-    - {{ compiler('c') }}              # [not win]
-    - {{ stdlib('c') }}                # [not win]
-    - {{ compiler("m2w64_fortran") }}  # [win]
-    - {{ compiler("m2w64_c") }}        # [win]
-    - {{ stdlib("m2w64_c") }}          # [win]
+    - {{ stdlib("c") }}
+    - {{ compiler("c") }}
+    - {{ compiler("fortran") }}
     - meson-python
     - meson >=1.5.1
     - numpy >=2.0
@@ -39,7 +36,6 @@ requirements:
     - cltoolbox >=2.0.0
     - dateparser
     - filelock
-    - m2w64-gcc-libgfortran  # [win]
     - numpy >=1.26
     - pandas
     - pint !=0.21.*
