@@ -10,11 +10,10 @@ source:
   sha256: 0a7c699fc7fb9238876e18218023a61bf9cd141d614f54ab391f05c01755470d
 
 build:
-  skip: true  # [py<39]
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -39,7 +38,6 @@ requirements:
     - cltoolbox >=2.0.0
     - dateparser
     - filelock
-    - m2w64-gcc-libgfortran  # [win]
     - numpy >=1.26
     - pandas
     - pint !=0.21.*
