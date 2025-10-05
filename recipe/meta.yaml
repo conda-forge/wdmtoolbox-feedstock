@@ -1,5 +1,5 @@
 {% set name = "wdmtoolbox" %}
-{% set version = "16.0.9" %}
+{% set version = "16.0.10" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/wdmtoolbox-{{ version }}.tar.gz
-  sha256: 0a7c699fc7fb9238876e18218023a61bf9cd141d614f54ab391f05c01755470d
+  sha256: 1bebc2daff7ec2abad544a1646b79e064dd121099e057e33a262cc6a55e14caa
 
 build:
   entry_points:
     - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 2
+  number: 0
 
 requirements:
   build:
