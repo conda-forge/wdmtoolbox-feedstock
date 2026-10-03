@@ -1,0 +1,80 @@
+schema_version: 1
+
+context:
+  name: wdmtoolbox
+  version: "16.2.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 44d257d17d49a742b5be6784efe7194b57e6432328c6791f12b77538877262af
+
+build:
+  number: 2
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - wdmtoolbox = wdmtoolbox.wdmtoolbox:main
+
+requirements:
+  build:
+    - if: not win
+      then: ${{ compiler('fortran') }}
+    - if: not win
+      then: ${{ compiler('c') }}
+    - if: not win
+      then: ${{ stdlib('c') }}
+    - if: win
+      then: ${{ compiler("m2w64_fortran") }}
+    - if: win
+      then: ${{ compiler("m2w64_c") }}
+    - if: win
+      then: ${{ stdlib("m2w64_c") }}
+    - meson-python
+    - meson >=1.5.1
+    - numpy >=2.0
+    - python
+    - setuptools-scm
+  host:
+    - meson-python
+    - meson >=1.5.1
+    - numpy >=2.0
+    - pip
+    - python
+  run:
+    - cltoolbox >=2.0.0
+    - dateparser
+    - filelock
+    - numpy >=1.26
+    - pandas
+    - pint !=0.21
+    - pint-pandas
+    - pydantic
+    - python
+    - python-dateutil
+    - scipy
+    - tabulate
+
+tests:
+  - python:
+      imports:
+        - wdmtoolbox
+      pip_check: true
+  - requirements:
+      run:
+        - pip
+    script:
+      - wdmtoolbox --help
+
+about:
+  summary: Read and write Watershed Data Management (WDM) files
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
+  homepage: https://pypi.org/project/wdmtoolbox/
+
+extra:
+  recipe-maintainers:
+    - timcera
