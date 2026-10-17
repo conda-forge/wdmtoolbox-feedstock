@@ -13,7 +13,7 @@ source:
   sha256: 44d257d17d49a742b5be6784efe7194b57e6432328c6791f12b77538877262af
 
 build:
-  number: 2
+  number: 3
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   python:
     entry_points:
@@ -21,30 +21,29 @@ build:
 
 requirements:
   build:
+    - python
     - if: not win
-      then: ${{ compiler('fortran') }}
-    - if: not win
-      then: ${{ compiler('c') }}
-    - if: not win
-      then: ${{ stdlib('c') }}
+      then:
+        - ${{ compiler('fortran') }}
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
     - if: win
-      then: ${{ compiler("m2w64_fortran") }}
-    - if: win
-      then: ${{ compiler("m2w64_c") }}
-    - if: win
-      then: ${{ stdlib("m2w64_c") }}
+      then:
+        - ${{ compiler("m2w64_fortran") }}
+        - ${{ compiler("m2w64_c") }}
+        - ${{ stdlib("m2w64_c") }}
     - meson-python
     - meson >=1.5.1
     - numpy >=2.0
-    - python
     - setuptools-scm
   host:
+    - python
     - meson-python
     - meson >=1.5.1
     - numpy >=2.0
     - pip
-    - python
   run:
+    - python
     - cltoolbox >=2.0.0
     - dateparser
     - filelock
@@ -53,7 +52,6 @@ requirements:
     - pint !=0.21
     - pint-pandas
     - pydantic
-    - python
     - python-dateutil
     - scipy
     - tabulate
@@ -66,6 +64,7 @@ tests:
   - requirements:
       run:
         - pip
+        - python
     script:
       - wdmtoolbox --help
 
